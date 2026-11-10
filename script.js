@@ -2,39 +2,80 @@
 const perguntas = [
   {
     texto: "😂 Eu queria dormir, MAS tinha prova!",
-    opcoes: ["Adição", "Oposição", "Conclusão", "Explicação"],
+    imagem: "meme1.jpg",
+    opcoes: [
+      "Adição",
+      "Oposição",
+      "Conclusão",
+      "Explicação"
+    ],
     correta: 1,
-    explicacao: "'Mas' indica oposição, ou seja, ideias contrárias."
+    explicacao: "'Mas' indica oposição entre duas ideias."
   },
+
   {
     texto: "📚 Estudei E fiz todos os exercícios!",
-    opcoes: ["Adição", "Alternância", "Conclusão", "Causa"],
+    imagem: "meme2.jpg",
+    opcoes: [
+      "Adição",
+      "Alternância",
+      "Conclusão",
+      "Causa"
+    ],
     correta: 0,
-    explicacao: "'E' acrescenta uma informação."
+    explicacao: "'E' indica adição, acrescentando uma informação."
   },
+
   {
     texto: "😭 Não estudei, PORTANTO fui mal na prova!",
-    opcoes: ["Oposição", "Conclusão", "Alternância", "Adição"],
+    imagem: "meme3.jpg",
+    opcoes: [
+      "Oposição",
+      "Conclusão",
+      "Alternância",
+      "Adição"
+    ],
     correta: 1,
     explicacao: "'Portanto' indica uma conclusão."
   },
+
   {
     texto: "😎 Vou estudar PORQUE quero tirar dez!",
-    opcoes: ["Explicação", "Oposição", "Adição", "Alternância"],
+    imagem: "meme4.jpg",
+    opcoes: [
+      "Causa",
+      "Oposição",
+      "Adição",
+      "Alternância"
+    ],
     correta: 0,
-    explicacao: "'Porque' apresenta uma explicação."
+    explicacao: "'Porque' apresenta a causa ou motivo da ação."
   },
+
   {
     texto: "🎮 OU eu jogo videogame OU faço a tarefa!",
-    opcoes: ["Conclusão", "Adição", "Alternância", "Oposição"],
+    imagem: "meme5.jpg",
+    opcoes: [
+      "Conclusão",
+      "Adição",
+      "Alternância",
+      "Oposição"
+    ],
     correta: 2,
-    explicacao: "'Ou... ou' indica uma escolha entre alternativas."
+    explicacao: "'Ou... ou' indica alternância entre escolhas."
   },
+
   {
     texto: "🥱 EMBORA estivesse com sono, terminei o trabalho!",
-    opcoes: ["Concessão", "Adição", "Conclusão", "Finalidade"],
+    imagem: "meme6.jpg",
+    opcoes: [
+      "Concessão",
+      "Adição",
+      "Conclusão",
+      "Finalidade"
+    ],
     correta: 0,
-    explicacao: "'Embora' indica concessão, algo que não impediu a ação."
+    explicacao: "'Embora' indica concessão: uma dificuldade que não impediu a ação."
   }
 ];
 
@@ -58,9 +99,23 @@ function mostrarPergunta() {
   document.getElementById("progresso").textContent =
     `Pergunta ${atual + 1} de ${perguntas.length}`;
 
-  document.getElementById("pergunta").textContent = pergunta.texto;
+  document.getElementById("pergunta").textContent =
+    pergunta.texto;
+
+  // Mostra a imagem correspondente à pergunta
+  const imagem = document.getElementById("imagem-meme");
+
+  imagem.src = pergunta.imagem;
+  imagem.alt = "Meme ilustrativo: " + pergunta.texto;
+  imagem.hidden = false;
+
+  // Caso a imagem não exista, esconde o espaço vazio
+  imagem.onerror = function() {
+    imagem.hidden = true;
+  };
+
   document.getElementById("pontos").textContent =
-    `Pontuação: ${pontos}`;
+    `⭐ Pontuação: ${pontos}`;
 
   document.getElementById("feedback").textContent = "";
   document.getElementById("proxima").hidden = true;
@@ -70,15 +125,24 @@ function mostrarPergunta() {
 
   pergunta.opcoes.forEach((opcao, indice) => {
     const botao = document.createElement("button");
+
     botao.textContent = opcao;
-    botao.onclick = () => responder(indice);
+    botao.classList.add("alternativa");
+
+    botao.onclick = function() {
+      responder(indice);
+    };
+
     area.appendChild(botao);
   });
 }
 
 function responder(escolha) {
   const pergunta = perguntas[atual];
-  const botoes = document.querySelectorAll("#alternativas button");
+
+  const botoes = document.querySelectorAll(
+    "#alternativas button"
+  );
 
   botoes.forEach((botao, indice) => {
     botao.disabled = true;
@@ -98,14 +162,28 @@ function responder(escolha) {
     pontos += 10;
   }
 
-  document.getElementById("feedback").textContent =
-    (acertou ? "✅ Acertou! " : "❌ Errou! ") +
-    pergunta.explicacao;
+  const feedback = document.getElementById("feedback");
+
+  if (acertou) {
+    feedback.textContent =
+      "✅ Parabéns! Você acertou! " + pergunta.explicacao;
+  } else {
+    feedback.textContent =
+      "❌ Não foi dessa vez! " + pergunta.explicacao;
+  }
 
   document.getElementById("pontos").textContent =
-    `Pontuação: ${pontos}`;
+    `⭐ Pontuação: ${pontos}`;
 
-  document.getElementById("proxima").hidden = false;
+  const botaoProxima = document.getElementById("proxima");
+
+  botaoProxima.hidden = false;
+
+  if (atual === perguntas.length - 1) {
+    botaoProxima.textContent = "Ver resultado 🏆";
+  } else {
+    botaoProxima.textContent = "Próxima pergunta ➜";
+  }
 }
 
 function proxima() {
@@ -114,10 +192,29 @@ function proxima() {
   if (atual < perguntas.length) {
     mostrarPergunta();
   } else {
-    document.getElementById("quiz").hidden = true;
-    document.getElementById("resultado").hidden = false;
-
-    document.getElementById("pontuacao-final").textContent =
-      `Você fez ${pontos} de ${perguntas.length * 10} pontos!`;
+    finalizar();
   }
+}
+
+function finalizar() {
+  document.getElementById("quiz").hidden = true;
+  document.getElementById("resultado").hidden = false;
+
+  const total = perguntas.length * 10;
+  const porcentagem = (pontos / total) * 100;
+
+  let mensagem = "";
+
+  if (porcentagem === 100) {
+    mensagem = "🏆 Incrível! Você é mestre das conjunções!";
+  } else if (porcentagem >= 70) {
+    mensagem = "🎉 Muito bem! Você conhece bastante sobre conjunções!";
+  } else if (porcentagem >= 40) {
+    mensagem = "👏 Bom trabalho! Continue praticando!";
+  } else {
+    mensagem = "📚 Continue estudando! Você consegue melhorar!";
+  }
+
+  document.getElementById("pontuacao-final").textContent =
+    `Você conquistou ${pontos} de ${total} pontos! ${mensagem}`;
 }
