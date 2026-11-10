@@ -1,18 +1,27 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Desafio dos Memes - Conjunções</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
   <main class="jogo">
+
     <h1>😂 Desafio dos Memes</h1>
     <p>Aprenda conjunções se divertindo!</p>
 
-    <div id="inicio">
+    <!-- TELA INICIAL COM EXPLICAÇÃO -->
+
+    <section id="inicio">
+
       <h2>📚 O que são conjunções?</h2>
 
       <p>
@@ -21,56 +30,137 @@
         relações de sentido entre elas.
       </p>
 
-      <h3>Conheça alguns tipos:</h3>
+      <h3>Conheça os principais tipos:</h3>
 
-      <p>➕ <strong>Adição:</strong> acrescenta uma ideia.
-        Exemplo: Estudei E fiz a tarefa.</p>
-
-      <p>⚡ <strong>Oposição:</strong> apresenta uma ideia contrária.
-        Exemplo: Estudei, MAS fiquei nervoso.</p>
-
-      <p>🏆 <strong>Conclusão:</strong> indica um resultado lógico.
-        Exemplo: Estudei, PORTANTO aprendi.</p>
-
-      <p>💡 <strong>Explicação:</strong> apresenta uma justificativa.
-        Exemplo: Leve o casaco, PORQUE está frio.</p>
-
-      <p>🔀 <strong>Alternância:</strong> indica escolha.
-        Exemplo: OU estudo OU jogo.</p>
-
-      <p>🌧️ <strong>Concessão:</strong> apresenta um contraste
-        que não impede a ação.
-        Exemplo: EMBORA chovesse, saí.</p>
-
-      <h3>🎮 Agora é sua vez!</h3>
       <p>
-        Leia os memes, escolha a conjunção
-        correta e ganhe 10 pontos por acerto!
+        ➕ <strong>Adição:</strong>
+        acrescenta uma informação.
+        <br>
+        Exemplo: Estudei E fiz a tarefa.
       </p>
 
-      <button onclick="iniciar()">Começar desafio 🚀</button>
-    </div>
+      <p>
+        ⚡ <strong>Oposição:</strong>
+        apresenta ideias contrárias.
+        <br>
+        Exemplo: Estudei, MAS fiquei nervoso.
+      </p>
 
-    <div id="quiz" hidden>
-      <p id="progresso"></p>
-      <h2 id="pergunta"></h2>
-      <div id="alternativas"></div>
-      <p id="feedback" aria-live="polite"></p>
+      <p>
+        🏆 <strong>Conclusão:</strong>
+        apresenta uma conclusão.
+        <br>
+        Exemplo: Estudei, PORTANTO aprendi.
+      </p>
 
-      <button id="proxima" onclick="proxima()" hidden>
-        Próxima pergunta
+      <p>
+        💡 <strong>Explicação:</strong>
+        apresenta uma justificativa.
+        <br>
+        Exemplo: Leve o casaco, PORQUE está frio.
+      </p>
+
+      <p>
+        🔀 <strong>Alternância:</strong>
+        apresenta uma escolha.
+        <br>
+        Exemplo: OU estudo OU jogo.
+      </p>
+
+      <p>
+        🌧️ <strong>Concessão:</strong>
+        apresenta uma situação que não impede outra.
+        <br>
+        Exemplo: EMBORA chovesse, saí.
+      </p>
+
+      <h3>🎮 Como jogar?</h3>
+
+      <p>
+        Observe os memes, leia as frases
+        e escolha o tipo de conjunção correto.
+      </p>
+
+      <p>
+        Cada resposta certa vale
+        <strong>10 pontos!</strong>
+      </p>
+
+      <button onclick="iniciar()">
+        🚀 Começar desafio
       </button>
 
-      <p id="pontos"></p>
-    </div>
+    </section>
 
-    <div id="resultado" hidden>
+    <!-- TELA DAS PERGUNTAS -->
+
+    <section id="quiz" hidden>
+
+      <p id="progresso"></p>
+
+      <h2 id="pergunta"></h2>
+
+      <!-- IMAGEM DO MEME -->
+
+      <img
+        id="imagem-meme"
+        src=""
+        alt="Meme ilustrativo da pergunta"
+        style="
+          display: block;
+          width: 100%;
+          max-width: 400px;
+          max-height: 300px;
+          object-fit: contain;
+          margin: 20px auto;
+          border-radius: 15px;
+          border: 3px solid #673ab7;
+        "
+      >
+
+      <!-- ALTERNATIVAS -->
+
+      <div id="alternativas"></div>
+
+      <!-- RESPOSTA -->
+
+      <p id="feedback" aria-live="polite"></p>
+
+      <button
+        id="proxima"
+        onclick="proxima()"
+        hidden
+      >
+        Próxima pergunta ➜
+      </button>
+
+      <!-- PONTUAÇÃO -->
+
+      <p id="pontos"></p>
+
+    </section>
+
+    <!-- TELA FINAL -->
+
+    <section id="resultado" hidden>
+
       <h2>🏆 Fim de jogo!</h2>
+
+      <p>Parabéns por participar do desafio!</p>
+
       <p id="pontuacao-final"></p>
-      <button onclick="iniciar()">Jogar novamente</button>
-    </div>
+
+      <button onclick="iniciar()">
+        🔄 Jogar novamente
+      </button>
+
+    </section>
+
   </main>
 
+  <!-- FUNCIONAMENTO DO JOGO -->
+
   <script src="script.js"></script>
+
 </body>
 </html>
