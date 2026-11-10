@@ -1,1 +1,42 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desafio dos Memes - Conjunções</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="jogo">
+    <h1>😂 Desafio dos Memes</h1>
+    <p>Aprenda conjunções se divertindo!</p>
+
+    <div id="inicio">
+      <h2>Preparado para o desafio?</h2>
+      <p>Leia os memes e escolha a resposta correta.</p>
+      <button onclick="iniciar()">Começar jogo</button>
+    </div>
+
+    <div id="quiz" hidden>
+      <p id="progresso"></p>
+      <h2 id="pergunta"></h2>
+      <div id="alternativas"></div>
+      <p id="feedback" aria-live="polite"></p>
+      <button id="proxima" onclick="proxima()" hidden>
+        Próxima pergunta
+      </button>
+      <p id="pontos"></p>
+    </div>
+
+    <div id="resultado" hidden>
+      <h2>🏆 Fim de jogo!</h2>
+      <p id="pontuacao-final"></p>
+      <button onclick="iniciar()">Jogar novamente</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
