@@ -13,9 +13,42 @@
     <p>Aprenda conjunções se divertindo!</p>
 
     <div id="inicio">
-      <h2>Preparado para o desafio?</h2>
-      <p>Leia os memes e escolha a resposta correta.</p>
-      <button onclick="iniciar()">Começar jogo</button>
+      <h2>📚 O que são conjunções?</h2>
+
+      <p>
+        Conjunções são palavras que ligam
+        palavras ou orações, estabelecendo
+        relações de sentido entre elas.
+      </p>
+
+      <h3>Conheça alguns tipos:</h3>
+
+      <p>➕ <strong>Adição:</strong> acrescenta uma ideia.
+        Exemplo: Estudei E fiz a tarefa.</p>
+
+      <p>⚡ <strong>Oposição:</strong> apresenta uma ideia contrária.
+        Exemplo: Estudei, MAS fiquei nervoso.</p>
+
+      <p>🏆 <strong>Conclusão:</strong> indica um resultado lógico.
+        Exemplo: Estudei, PORTANTO aprendi.</p>
+
+      <p>💡 <strong>Explicação:</strong> apresenta uma justificativa.
+        Exemplo: Leve o casaco, PORQUE está frio.</p>
+
+      <p>🔀 <strong>Alternância:</strong> indica escolha.
+        Exemplo: OU estudo OU jogo.</p>
+
+      <p>🌧️ <strong>Concessão:</strong> apresenta um contraste
+        que não impede a ação.
+        Exemplo: EMBORA chovesse, saí.</p>
+
+      <h3>🎮 Agora é sua vez!</h3>
+      <p>
+        Leia os memes, escolha a conjunção
+        correta e ganhe 10 pontos por acerto!
+      </p>
+
+      <button onclick="iniciar()">Começar desafio 🚀</button>
     </div>
 
     <div id="quiz" hidden>
@@ -23,9 +56,11 @@
       <h2 id="pergunta"></h2>
       <div id="alternativas"></div>
       <p id="feedback" aria-live="polite"></p>
+
       <button id="proxima" onclick="proxima()" hidden>
         Próxima pergunta
       </button>
+
       <p id="pontos"></p>
     </div>
 
@@ -39,4 +74,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
