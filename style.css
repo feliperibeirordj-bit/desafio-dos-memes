@@ -1,4 +1,6 @@
 
+/* CONFIGURAÇÕES GERAIS */
+
 * {
   box-sizing: border-box;
 }
@@ -6,64 +8,261 @@
 body {
   margin: 0;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #24134e, #7440c8);
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 25px 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #251052,
+    #673ab7,
+    #a855f7
+  );
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: #29213b;
 }
 
+/* CAIXA PRINCIPAL */
+
 .jogo {
-  background: white;
+  background: #ffffff;
+
   width: 100%;
-  max-width: 550px;
+  max-width: 650px;
+
   padding: 30px;
-  border-radius: 22px;
+
+  border-radius: 24px;
+
   text-align: center;
-  box-shadow: 0 10px 30px #0004;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
 }
+
+/* TÍTULOS */
 
 h1 {
   color: #673ab7;
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
 h2 {
+  color: #38205e;
+  font-size: 24px;
   line-height: 1.5;
 }
 
+h3 {
+  color: #673ab7;
+  margin-top: 25px;
+}
+
+/* TEXTOS */
+
+p {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+#inicio p {
+  background: #f5f0ff;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+/* BOTÕES */
+
 button {
   display: block;
+
   width: 100%;
-  padding: 15px;
+
+  padding: 16px;
   margin: 12px 0;
+
+  border: none;
+  border-radius: 14px;
+
   background: #673ab7;
   color: white;
-  border: none;
-  border-radius: 12px;
+
   font-size: 17px;
+  font-weight: bold;
+
   cursor: pointer;
+
+  transition: background 0.2s, transform 0.2s;
 }
 
-button:hover {
-  background: #4527a0;
+button:hover:not(:disabled) {
+  background: #512da8;
+  transform: scale(1.02);
 }
 
-button:disabled {
-  cursor: default;
+/* IMAGENS DOS MEMES */
+
+#imagem-meme {
+  display: block;
+
+  width: 100%;
+  max-width: 420px;
+  max-height: 320px;
+
+  object-fit: contain;
+
+  margin: 20px auto;
+
+  border: 4px solid #8b5cf6;
+  border-radius: 16px;
+
+  background: #f4f0ff;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.correta {
-  background: #16803c;
-}
+/* PERGUNTAS */
 
-.errada {
-  background: #c62828;
-}
+#progresso {
+  background: #eee4ff;
+  color: #512da8;
 
-#feedback {
+  padding: 10px;
+  border-radius: 20px;
+
   font-weight: bold;
 }
 
+#pergunta {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+/* ALTERNATIVAS */
+
+#alternativas {
+  margin-top: 20px;
+}
+
+.alternativa {
+  background: #673ab7;
+}
+
+.alternativa:hover:not(:disabled) {
+  background: #512da8;
+}
+
+/* RESPOSTA CORRETA */
+
+button.correta {
+  background: #16803c;
+  color: white;
+}
+
+/* RESPOSTA ERRADA */
+
+button.errada {
+  background: #c62828;
+  color: white;
+}
+
+/* BOTÕES DESABILITADOS */
+
+button:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* EXPLICAÇÃO DA RESPOSTA */
+
+#feedback {
+  font-size: 17px;
+  font-weight: bold;
+
+  background: #f0ebff;
+  padding: 15px;
+
+  border-radius: 12px;
+
+  margin-top: 20px;
+}
+
+/* PONTUAÇÃO */
+
+#pontos {
+  color: #673ab7;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+/* BOTÃO DE PRÓXIMA PERGUNTA */
+
+#proxima {
+  background: #f59e0b;
+  color: #24143c;
+}
+
+#proxima:hover {
+  background: #d97706;
+}
+
+/* TELA FINAL */
+
+#resultado {
+  padding: 20px 0;
+}
+
+#pontuacao-final {
+  font-size: 22px;
+  font-weight: bold;
+
+  color: #512da8;
+
+  background: #f5f0ff;
+
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* ESCONDER ELEMENTOS */
+
 [hidden] {
   display: none !important;
+}
+
+/* ADAPTAÇÃO PARA CELULAR */
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .jogo {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+
+  #imagem-meme {
+    max-height: 250px;
+  }
 }
