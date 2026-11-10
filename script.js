@@ -2,7 +2,7 @@
 const perguntas = [
   {
     texto: "😂 Eu queria dormir, MAS tinha prova!",
-    imagem: "meme1.jpg",
+    imagem: "images.jpg",
     opcoes: [
       "Adição",
       "Oposição",
@@ -15,7 +15,7 @@ const perguntas = [
 
   {
     texto: "📚 Estudei E fiz todos os exercícios!",
-    imagem: "meme2.jpg",
+    imagem: "images (1).jpg",
     opcoes: [
       "Adição",
       "Alternância",
@@ -28,7 +28,7 @@ const perguntas = [
 
   {
     texto: "😭 Não estudei, PORTANTO fui mal na prova!",
-    imagem: "meme3.jpg",
+    imagem: "images (2).jpg",
     opcoes: [
       "Oposição",
       "Conclusão",
@@ -41,7 +41,7 @@ const perguntas = [
 
   {
     texto: "😎 Vou estudar PORQUE quero tirar dez!",
-    imagem: "meme4.jpg",
+    imagem: "images (3).jpg",
     opcoes: [
       "Causa",
       "Oposição",
@@ -54,7 +54,7 @@ const perguntas = [
 
   {
     texto: "🎮 OU eu jogo videogame OU faço a tarefa!",
-    imagem: "meme5.jpg",
+    imagem: "images (4).jpg",
     opcoes: [
       "Conclusão",
       "Adição",
@@ -67,7 +67,7 @@ const perguntas = [
 
   {
     texto: "🥱 EMBORA estivesse com sono, terminei o trabalho!",
-    imagem: "meme6.jpg",
+    imagem: "images (5).jpg",
     opcoes: [
       "Concessão",
       "Adição",
@@ -82,6 +82,8 @@ const perguntas = [
 let atual = 0;
 let pontos = 0;
 
+// INICIAR O JOGO
+
 function iniciar() {
   atual = 0;
   pontos = 0;
@@ -93,6 +95,8 @@ function iniciar() {
   mostrarPergunta();
 }
 
+// MOSTRAR PERGUNTAS E IMAGENS
+
 function mostrarPergunta() {
   const pergunta = perguntas[atual];
 
@@ -102,31 +106,41 @@ function mostrarPergunta() {
   document.getElementById("pergunta").textContent =
     pergunta.texto;
 
-  // Mostra a imagem correspondente à pergunta
+  // CARREGAR IMAGEM DO MEME
+
   const imagem = document.getElementById("imagem-meme");
 
-  imagem.src = pergunta.imagem;
-  imagem.alt = "Meme ilustrativo: " + pergunta.texto;
   imagem.hidden = false;
 
-  // Caso a imagem não exista, esconde o espaço vazio
+  imagem.alt = "Meme ilustrativo: " + pergunta.texto;
+
   imagem.onerror = function() {
     imagem.hidden = true;
+    console.warn("Imagem não encontrada:", pergunta.imagem);
   };
+
+  imagem.src = encodeURI(pergunta.imagem);
+
+  // MOSTRAR PONTUAÇÃO
 
   document.getElementById("pontos").textContent =
     `⭐ Pontuação: ${pontos}`;
 
   document.getElementById("feedback").textContent = "";
+
   document.getElementById("proxima").hidden = true;
 
+  // CRIAR ALTERNATIVAS
+
   const area = document.getElementById("alternativas");
+
   area.innerHTML = "";
 
   pergunta.opcoes.forEach((opcao, indice) => {
     const botao = document.createElement("button");
 
     botao.textContent = opcao;
+
     botao.classList.add("alternativa");
 
     botao.onclick = function() {
@@ -136,6 +150,8 @@ function mostrarPergunta() {
     area.appendChild(botao);
   });
 }
+
+// VERIFICAR RESPOSTA
 
 function responder(escolha) {
   const pergunta = perguntas[atual];
@@ -186,6 +202,8 @@ function responder(escolha) {
   }
 }
 
+// PRÓXIMA PERGUNTA
+
 function proxima() {
   atual++;
 
@@ -195,6 +213,8 @@ function proxima() {
     finalizar();
   }
 }
+
+// RESULTADO FINAL
 
 function finalizar() {
   document.getElementById("quiz").hidden = true;
